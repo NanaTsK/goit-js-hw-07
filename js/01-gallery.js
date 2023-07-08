@@ -29,7 +29,6 @@ function onImgClick(evt) {
     if (!evt.target.classList.contains("gallery__image")) {
         return;
     } else { 
-        console.log(`Img Clicked`);
 
         const popOriginalImg = evt.target.dataset.source;
 
@@ -37,6 +36,15 @@ function onImgClick(evt) {
     <img src="${popOriginalImg}" width="800" height="600">`)
 
     instance.show()
+
+        document.addEventListener("keydown", onEscKeyPress);   
+        function onEscKeyPress(evt) { 
+
+            if (evt.code !== "Escape") { 
+                return;
+            } instance.close(evt)
+            document.removeEventListener("keydown", onEscKeyPress);
+        }
 
     }
 };
