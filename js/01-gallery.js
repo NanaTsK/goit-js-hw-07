@@ -7,7 +7,6 @@ const galleryEl = document.querySelector(".gallery");
 
 const galleryListMarkup = galleryItems
     .map(({ preview, original, description }) =>
-//  return `<li class="gallery__item">
         `<li class="gallery__item">
   <a class="gallery__link" href="${original}">
     <img
