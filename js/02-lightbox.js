@@ -9,7 +9,7 @@ const galleryListMarkup = galleryItems
     .map(({ preview, original, description }) =>
 
     `<li class="gallery__item">
-   <a class="gallery__link" href="l${original}">
+    <a class="gallery__link" href="${original}">
       <img class="gallery__image" src="${preview}" alt="${description}" />
    </a>
 </li>`
@@ -18,29 +18,8 @@ const galleryListMarkup = galleryItems
 
 galleryEl.insertAdjacentHTML("beforeend", galleryListMarkup);
 
-// galleryEl.addEventListener("click", onImgClick);
-
-// function onImgClick(evt) { 
-//     evt.preventDefault();
-//     if (!evt.target.classList.contains("gallery__image")) {
-//         return;
-//     } else { 
-
-//         const popOriginalImg = evt.target.dataset.source;
-
-//         const instance = basicLightbox.create(`
-//     <img src="${popOriginalImg}" width="800" height="600">`)
-
-//     instance.show()
-
-//         document.addEventListener("keydown", onEscKeyPress);   
-//         function onEscKeyPress(evt) { 
-
-//             if (evt.code !== "Escape") { 
-//                 return;
-//             } instance.close(evt)
-//             document.removeEventListener("keydown", onEscKeyPress);
-//         }
-
-//     }
-// };
+let gallery = new SimpleLightbox('.gallery a', {
+  captionsData: 'alt',
+  captionDelay: 250,
+});
+gallery.on('show.simplelightbox');
