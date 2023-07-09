@@ -32,18 +32,19 @@ function onImgClick(evt) {
         const popOriginalImg = evt.target.dataset.source;
 
         const instance = basicLightbox.create(`
-    <img src="${popOriginalImg}" width="800" height="600">`)
+    <img src="${popOriginalImg}" width="800" height="600">`,
+        {
+      onShow: () => document.addEventListener("keydown", onEscKeyPress),
+      onClose: () => document.removeEventListener("keydown", onEscKeyPress)
+
+    })
 
     instance.show()
 
-        document.addEventListener("keydown", onEscKeyPress);   
         function onEscKeyPress(evt) { 
-
             if (evt.code !== "Escape") { 
                 return;
-            } instance.close(evt)
-            document.removeEventListener("keydown", onEscKeyPress);
+            } instance.close(evt);
         }
-
     }
 };
